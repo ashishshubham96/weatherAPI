@@ -36,3 +36,5 @@ Weather Forecast Microservice
 18.Swaggers are also configured in the microservice.
 
 19.A sequence diagram for the flow of inside the microservice is also added and its path is "ss.drawio.png".
+
+20.Since the microservice is dependent on the a 3rd party API, so there might be a senerio when the 3rd party API is down and we might get some exceptions. To Handle this sererio I have added Caching to int the service layer, where it maps the city name with the retured object response and display the same response even if the 3rd party API is down.
