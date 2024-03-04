@@ -1,0 +1,18 @@
+package com.weather.weatherforecast.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class SystemDetails {
+
+	@JsonProperty("pod")
+	private String pod;
+
+	public String getPod() {
+		return pod;
+	}
+
+	public void setPod(String pod) {
+		this.pod = pod;
+	}
+
+}
