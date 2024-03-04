@@ -2,26 +2,14 @@ package com.weather.weatherforecast.util;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.weather.weatherforecast.constant.WeatherForecastConstant;
 import com.weather.weatherforecast.model.Forecast;
 import com.weather.weatherforecast.model.WeatherForecastResponse;
 
 @Component
 public class WeatherForcastUtil {
-
-	@Value("${weather-forcast.windWarning}")
-	String windWarning;
-
-	@Value("${weather-forcast.temperatureWarning}")
-	String temperatureWarning;
-
-	@Value("${weather-forcast.thunderstormWarning}")
-	String thunderstormWarning;
-
-	@Value("${weather-forcast.rainWarning}")
-	String rainWarning;
 
 	public WeatherForecastResponse processForecastResponse(WeatherForecastResponse forecastResponse) {
 
@@ -32,18 +20,18 @@ public class WeatherForcastUtil {
 			for (Forecast forecast : forecasts) {
 				StringBuilder forecastSummary = new StringBuilder();
 				if (forecast.getWinds().getSpeed() > 10.00) {
-					forecastSummary.append(windWarning);
+					forecastSummary.append(WeatherForecastConstant.WEATHER_FORECAST_WIND_WARNING);
 				}
 				if (kelvinToCelsius(forecast.getMain().getMaximumTemperature()) > 40.00) {
-					forecastSummary.append(temperatureWarning);
+					forecastSummary.append(WeatherForecastConstant.WEATHER_FORECAST_TEMPERATURE_WARNING);
 				}
 				
 				weatherId = forecast.getWeathers().get(0).getId();
 				if (weatherId >= 200 && weatherId <= 233) {
-					forecastSummary.append(thunderstormWarning);
+					forecastSummary.append(WeatherForecastConstant.WEATHER_FORECAST_THUNDERSTROM_WARNING);
 				}
 				if (weatherId >= 500 && weatherId <= 532) {
-					forecastSummary.append(rainWarning);
+					forecastSummary.append(WeatherForecastConstant.WEATHER_FORECAST_RAIN_WARNING);
 				}
 				forecast.setForecastSummary(forecastSummary.toString());
 			}
