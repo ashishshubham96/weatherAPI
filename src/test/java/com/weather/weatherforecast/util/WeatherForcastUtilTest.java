@@ -60,4 +60,11 @@ public class WeatherForcastUtilTest {
     	weatherForecastResponse = weatherForcastUtil.processForecastResponse(weatherForecastResponse);
     	assertNotNull(weatherForecastResponse);
     }
+    
+    @Test
+    void processForecastResponse3() {
+    	weatherForecastResponse.getForecasts().get(0).getWeathers().get(0).setId(600);;
+    	weatherForecastResponse = weatherForcastUtil.processForecastResponse(weatherForecastResponse);
+    	assertNotNull(weatherForecastResponse);
+    }
 }

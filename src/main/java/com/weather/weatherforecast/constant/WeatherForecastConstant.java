@@ -14,4 +14,16 @@ public class WeatherForecastConstant {
 	
 	public static final String WEATHER_FORECAST_RAIN_WARNING = "Don't step out! A strom is brewing! ";
 	
+	public static final String WEATHER_FORECAST_NO_WARNING = "Its a pleasant weather outside ";
+	
+	public static final String TEMPERATURE = "Temperature";
+	
+	public static final String RAIN = "Rain";
+	
+	public static final String WIND = "Wind";
+	
+	public static final String THUNDERSTORM = "Thunderstorm";
+	
+	
+	
 }

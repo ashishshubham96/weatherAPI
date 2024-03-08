@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriTemplate;
 
+import com.weather.weatherforecast.model.ErrorInfo;
+import com.weather.weatherforecast.model.Response;
 import com.weather.weatherforecast.model.WeatherForecastResponse;
 import com.weather.weatherforecast.service.WeatherForecastService;
 import com.weather.weatherforecast.util.WeatherForcastUtil;
@@ -38,18 +40,21 @@ public class WeatherForecastServiceImpl implements WeatherForecastService{
 	
 	@Override
 	@Cacheable("city")
-	public WeatherForecastResponse weatherAPIForecast(String city) {
-		// TODO Auto-generated method stub
+	public Response weatherAPIForecast(String city) {
+		Response response = new Response();
+		ErrorInfo errorInfo = new ErrorInfo();
 		WeatherForecastResponse weatherForecastResponse = new WeatherForecastResponse();
 		try {
 			URI weatherApiUrl = new UriTemplate(weatherForecastApiUrl).expand(city, apiKey, numberOfDays);
-			ResponseEntity<WeatherForecastResponse> response = weatherRestTemplate.getForEntity(weatherApiUrl, WeatherForecastResponse.class);
-			weatherForecastResponse = weatherForecastUtil.processForecastResponse(response.getBody());
+			ResponseEntity<WeatherForecastResponse> apiRresponse = weatherRestTemplate.getForEntity(weatherApiUrl, WeatherForecastResponse.class);
+			weatherForecastResponse = weatherForecastUtil.processForecastResponse(apiRresponse.getBody());
+			response.setWeatherForecastResponse(weatherForecastResponse);
 
 		}catch(Exception ex) {
-			weatherForecastResponse.setMessage(ex.getLocalizedMessage());
+			errorInfo.setErrorMessage(ex.getLocalizedMessage());
+			response.setErrorInfo(errorInfo);
 		}
-		return weatherForecastResponse;
+		return response;
 	}
 	
 }
