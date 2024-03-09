@@ -4,7 +4,16 @@ import com.weather.weatherforecast.condition.Condition;
 import com.weather.weatherforecast.constant.WeatherForecastConstant;
 import com.weather.weatherforecast.model.Forecast;
 
-public class TemperatureWarning implements Condition{
+public class TemperatureWarning implements Condition {
+
+	private static TemperatureWarning temperatureWarningObj;
+
+	public static TemperatureWarning getTemperatureWarning() {
+		if (temperatureWarningObj == null) {
+			temperatureWarningObj = new TemperatureWarning();
+		}
+		return temperatureWarningObj;
+	}
 
 	@Override
 	public String checkCondition(Forecast forecast) {
@@ -21,5 +30,4 @@ public class TemperatureWarning implements Condition{
 		return celsiusTemp;
 	}
 
-	
 }

@@ -6,6 +6,15 @@ import com.weather.weatherforecast.model.Forecast;
 
 public class ThunderstormWarning implements Condition{
 
+	private static ThunderstormWarning thunderstormWarningObj;
+
+	public static ThunderstormWarning getThunderstormWarning() {
+		if (thunderstormWarningObj == null) {
+			thunderstormWarningObj = new ThunderstormWarning();
+		}
+		return thunderstormWarningObj;
+	}
+
 	@Override
 	public String checkCondition(Forecast forecast) {
 		long weatherId = forecast.getWeathers().get(0).getId();

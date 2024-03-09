@@ -6,6 +6,15 @@ import com.weather.weatherforecast.model.Forecast;
 
 public class WindWarning implements Condition {
 
+	private static WindWarning windWarningObj;
+
+	public static WindWarning getWindWarning() {
+		if (windWarningObj == null) {
+			windWarningObj = new WindWarning();
+		}
+		return windWarningObj;
+	}
+
 	@Override
 	public String checkCondition(Forecast forecast) {
 		String forecastSummary = new String();

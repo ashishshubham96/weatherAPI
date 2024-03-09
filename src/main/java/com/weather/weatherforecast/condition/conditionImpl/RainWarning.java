@@ -5,6 +5,15 @@ import com.weather.weatherforecast.constant.WeatherForecastConstant;
 import com.weather.weatherforecast.model.Forecast;
 
 public class RainWarning implements Condition {
+	
+	private static RainWarning rainWarningObj;
+	
+	public static RainWarning getRainWarning() {
+		if(rainWarningObj == null) {
+			rainWarningObj = new RainWarning();
+		}
+		return rainWarningObj;
+	}
 
 	@Override
 	public String checkCondition(Forecast forecast) {

@@ -8,18 +8,18 @@ public class ConditionFactory {
 	public static Condition getCondition(String condition) {
 		
 		if(condition.trim().equals(WeatherForecastConstant.TEMPERATURE)) {
-			return new TemperatureWarning();
+			return TemperatureWarning.getTemperatureWarning();
 		}
 		else if(condition.trim().equals(WeatherForecastConstant.RAIN)) {
-			return new RainWarning();
+			return RainWarning.getRainWarning();
 		}
 		else if(condition.trim().equals(WeatherForecastConstant.WIND)) {
-			return new WindWarning();
+			return WindWarning.getWindWarning();
 		}
 		else if(condition.trim().equals(WeatherForecastConstant.THUNDERSTORM)) {
-			return new ThunderstormWarning();
+			return ThunderstormWarning.getThunderstormWarning();
 		}
 		
-		return new NoWarning();
+		return NoWarning.getNoWarning();
 	}
 }
